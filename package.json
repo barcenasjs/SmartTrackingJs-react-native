@@ -1,0 +1,40 @@
+{
+  "name": "smarttrakingjs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "react": "17.0.1",
+    "react-native": "0.64.2",
+    "react-native-navigation": "^7.18.1",
+    "react-native-sms": "^1.11.0",
+    "socket.io-client": "^2.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@react-native-community/geolocation": "^2.0.2",
+    "babel-jest": "^26.6.3",
+    "eslint": "7.14.0",
+    "jest": "^26.6.3",
+    "lodash": "^4.17.21",
+    "metro-react-native-babel-preset": "^0.64.0",
+    "react-redux": "~7.2.0",
+    "react-test-renderer": "17.0.1",
+    "redux": "~4.0.5",
+    "redux-thunk": "~2.3.0"
+  },
+  "resolutions": {
+    "@babel/plugin-transform-react-display-name": "7.14.5"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
