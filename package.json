@@ -10,10 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "buffer": "^6.0.3",
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-navigation": "^7.18.1",
     "react-native-sms": "^1.11.0",
+    "react-native-udp": "^4.1.2",
     "socket.io-client": "^2.4.0"
   },
   "devDependencies": {

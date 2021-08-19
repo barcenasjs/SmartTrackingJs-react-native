@@ -10,7 +10,7 @@ import {
 import SendSMS from 'react-native-sms';
 import UseLocation from '../../hooks/useLocation';
 import {useSelector} from 'react-redux';
-import {emit} from '../../services/sokectio';
+import {emit, emitUDP, UDP} from '../../services/sokectio';
 
 function Index(props) {
   UseLocation();
@@ -18,6 +18,7 @@ function Index(props) {
     return state.user._geo;
   });
   const [phone, setPhone] = useState('');
+  const [ip, setIp] = useState('http://bysj.servegame.com:3030');
   const sendSMS = () => {
     if (
       /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g.test(phone) &&
@@ -29,7 +30,6 @@ function Index(props) {
         successTypes: ['sent'],
         allowAndroidSendWithoutReadPermission: true,
       }).then(res => {
-        setPhone('');
         alert('Mensaje envíado');
       });
     }
@@ -38,25 +38,49 @@ function Index(props) {
     <SafeAreaView style={styles.container}>
       <Text style={{textAlign: 'center'}}>
         This page for now is only going to be limited to its main functionality.
-        Send information through TPC/UDP protocol
+        Send information through TPC/UDP protocol. And send SMS message.
       </Text>
-      <View>
-        <Text>send data</Text>
-        {/*<TextInput*/}
-        {/*  value={phone}*/}
-        {/*  onChangeText={val => {*/}
-        {/*    setPhone(val);*/}
-        {/*  }}*/}
-        {/*  placeholder={'Número celular'}*/}
-        {/*  style={styles.textInput}*/}
-        {/*/>*/}
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={phone}
+          onChangeText={val => {
+            setPhone(val);
+          }}
+          placeholder={'Número celular'}
+          style={styles.textInput}
+        />
+      </View>
+      <View style={{}}>
+        <TouchableOpacity
+          onPress={() => {
+            sendSMS();
+            // emit({location});
+          }}
+          style={styles.likeButton}>
+          <Text style={styles.textButton}>Send data location SMS </Text>
+        </TouchableOpacity>
       </View>
 
-      <TouchableOpacity
-        onPress={() => emit({location})}
-        style={styles.likeButton}>
-        <Text style={styles.textButton}>Send data location</Text>
-      </TouchableOpacity>
+      <View style={styles.inputContainer}>
+        <TextInput
+          value={ip}
+          onChangeText={val => {
+            setIp(val);
+          }}
+          placeholder={'IP'}
+          style={styles.textInput}
+        />
+      </View>
+      <View style={{}}>
+        <TouchableOpacity
+          onPress={() => {
+            //sendSMS();
+            emit({location, ip});
+          }}
+          style={styles.likeButton}>
+          <Text style={styles.textButton}>Send data location IP</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 }
@@ -67,6 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
+  inputContainer: {marginTop: 50},
   likeButton: {
     marginTop: 10,
     padding: 10,
@@ -77,7 +102,7 @@ const styles = StyleSheet.create({
   textInput: {
     backgroundColor: '#D3D3D3',
     borderRadius: 5,
-    maxWidth: 500,
+    minWidth: 100,
   },
 });
 

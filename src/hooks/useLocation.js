@@ -16,8 +16,6 @@ function UseLocation() {
     } else {
       const c = await PermissionsAndroid.check(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        PermissionsAndroid.PERMISSIONS.SEND_SMS,
-        PermissionsAndroid.PERMISSIONS.READ_SMS,
       );
       return setLocation();
     }
@@ -57,6 +55,7 @@ function UseLocation() {
           },
           info => {
             // alert(JSON.stringify(info));
+            grantedLocation();
             console.log(JSON.stringify(info));
 
             // dispatch(
